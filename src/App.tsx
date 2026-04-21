@@ -137,64 +137,53 @@ const ProjectModal = ({ project, onClose }: { project: ProjectDetail, onClose: (
 const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 z-[-1] bg-base overflow-hidden" aria-hidden="true">
-      {/* Dynamic Base Hue Shift */}
-      <motion.div 
-        animate={{ 
-          filter: ["hue-rotate(0deg)", "hue-rotate(15deg)", "hue-rotate(0deg)"] 
+      {/* Mesh Gradient Overlay */}
+      <div className="absolute inset-0 mesh-gradient opacity-80" />
+      
+      {/* Optimized Floating Blobs */}
+      <motion.div
+        animate={{
+          x: [0, 80, 0],
+          y: [0, -60, 0],
+          scale: [1, 1.1, 1],
         }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0"
-      >
-        {/* Mesh Gradient Overlay */}
-        <div className="absolute inset-0 mesh-gradient opacity-80" />
-        
-        {/* Floating Blobs with Enhanced Glow & Complex Motion */}
-        <motion.div
-          animate={{
-            x: [0, 200, -100, 0],
-            y: [0, -150, 100, 0],
-            scale: [1, 1.4, 0.9, 1],
-            rotate: [0, 45, -45, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute -top-1/4 -left-1/4 w-[1000px] h-[1000px] rounded-full bg-accent/10 blur-[130px]"
-        />
-        <motion.div
-          animate={{
-            x: [0, -200, 150, 0],
-            y: [0, 120, -100, 0],
-            scale: [1, 1.3, 1.1, 1],
-            rotate: [0, -90, 45, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute -bottom-1/4 -right-1/4 w-[900px] h-[900px] rounded-full bg-secondary/15 blur-[140px]"
-        />
-        <motion.div
-          animate={{
-            opacity: [0.1, 0.3, 0.1],
-            scale: [0.8, 1.2, 0.8],
-            x: ["-50%", "-40%", "-60%", "-50%"],
-            y: ["-50%", "-60%", "-40%", "-50%"],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 w-[800px] h-[800px] rounded-full bg-blue-400/10 blur-[180px]"
-        />
-      </motion.div>
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        style={{ willChange: "transform" }}
+        className="absolute -top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-accent/10 blur-[80px]"
+      />
+      <motion.div
+        animate={{
+          x: [0, -60, 0],
+          y: [0, 40, 0],
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        style={{ willChange: "transform" }}
+        className="absolute -bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full bg-secondary/15 blur-[90px]"
+      />
+      <motion.div
+        animate={{
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        style={{ willChange: "opacity" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-blue-400/5 blur-[100px]"
+      />
 
-      {/* Animated Grain Texture Overlay */}
-      <div className="absolute inset-0 grain-texture opacity-[0.04] mix-blend-overlay pointer-events-none scale-110" />
+      {/* Static Grain Texture Overlay (Reduced Opacity for Perf) */}
+      <div className="absolute inset-0 grain-texture opacity-[0.02] mix-blend-overlay pointer-events-none" />
     </div>
   );
 };
